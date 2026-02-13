@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model travel_blog {
+  blog_id    Int    @id @default(autoincrement())
+  place_name String @db.VarChar(45)
+  review     String @db.VarChar(500)
+  user_id    Int?
+  pictures   String @db.VarChar(500)
+
+  @@index([user_id], map: "user_id_idx")
+  @@map("travel-blog")
+}
+
+model users {
+  user_id     Int     @id @default(autoincrement())
+  first_name  String  @db.VarChar(45)
+  last_name   String  @db.VarChar(45)
+  email       String  @unique(map: "email_UNIQUE") @db.VarChar(100)
+  password    String  @db.VarChar(200)
+  profile_pic String? @db.VarChar(200)
+}
