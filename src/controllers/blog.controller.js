@@ -7,7 +7,7 @@ import {
 
 export const addBlogHandler = async (req, res) => {
     const response = await addBlog(req);
-    res.status(200).json({
+    res.status(201).json({
         msg: 'Blog has been successfully added',
         success: true,
         response, // blog: response // use this to accomodate frontend

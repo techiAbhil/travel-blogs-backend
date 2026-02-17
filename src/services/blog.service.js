@@ -6,7 +6,7 @@ import db from '#db';
 export const addBlog = async (req) => {
     const payload = addBlogSchema.parse(req.body);
     const blogDetails = await db.travel_blog.create({
-        data: { ...payload, pictures: '' },
+        data: { ...payload, pictures: '', user_id: req.user.user_id },
     });
     return blogDetails;
 };
@@ -18,6 +18,7 @@ export const updateBlog = async (req) => {
         data: payload,
         where: {
             blog_id, // blog_id: blog_id
+            user_id: req.user.user_id,
         },
     });
     return blogDetails;
@@ -29,21 +30,25 @@ export const deleteBlog = async (req) => {
     const blogDetails = await db.travel_blog.delete({
         where: {
             blog_id, // blog_id: blog_id
+            user_id: req.user.user_id,
         },
     });
     return blogDetails;
 };
 
 export const getAllBlog = async () => {
-    const allBlogs = await db.travel_blog.findMany();
+    // const queryString = req.query;
+    const allBlogs = await db.travel_blog.findMany({});
+    // const table = `travel-blog`;
+    // const allBlogs = await db.$queryRaw`select * from ${table}`;
     return allBlogs;
 };
 
 export const getBlogByUser = async (req) => {
-    const user_id = req.user;
+    const user = req.user;
     const myBlogs = await db.travel_blog.findMany({
         where: {
-            user_id,
+            user_id: user.user_id,
         },
     });
     return myBlogs;

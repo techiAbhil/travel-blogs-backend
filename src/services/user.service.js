@@ -1,33 +1,33 @@
-import { loginSchema, registerSchema } from '#validations/auth.validation';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import db from '#db';
+import { updateUserSchema } from '#validations/user.validaton';
+import { generateToken } from '#utils/hlper';
 
-export const login = async (req) => {
-    const payload = loginSchema.parse(req.body);
-    const userData = await db.users.findFirst({
+// profile pic upload
+
+// update profile
+
+export const updateProfile = async (req) => {
+    const payload = updateUserSchema.parse(req.body);
+    delete payload.password;
+    const userDetails = await db.users.update({
+        data: payload,
         where: {
-            email: payload.email,
+            user_id: req.user.user_id,
         },
     });
-    if (userData && bcrypt.compareSync(payload.password, userData.password)) {
-        delete userData.password;
-        const token = jwt.sign(userData, process.env.JWT_SECRET);
-        return token;
-    }
+    const token = generateToken(userDetails);
+    return token;
 };
-export const register = async (req) => {
-    const payload = registerSchema.parse(req.body);
 
-    const salt = bcrypt.genSaltSync(10);
-    const encryptedPassword = bcrypt.hashSync(payload.password, salt);
-
-    const response = await db.users.create({
+export const updateUserPofilePic = async (req) => {
+    const userDetails = await db.users.update({
         data: {
-            ...payload,
-            password: encryptedPassword,
+            profile_pic: '',
+        },
+        where: {
+            user_id: req.user.user_id,
         },
     });
-    delete response.password;
-    return response;
+    const token = generateToken(userDetails);
+    return token;
 };

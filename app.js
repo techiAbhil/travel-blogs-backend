@@ -3,15 +3,18 @@ import notFound from '#middlewares/notFound.middleware';
 import requestLogger from '#middlewares/request-logger.middleware';
 import { numberSchema } from '#validations/common.validation';
 import errorHandlerMiddleware from '#middlewares/error-handler.middleware';
+import jwtMiddleware from '#middlewares/jwt.middleware';
 
 import authRouter from '#routes/auth.route';
 import blogRouter from '#routes/blog.route';
 
+import cors from 'cors';
+
 const app = express();
-app.use(express.json(), requestLogger);
+app.use(cors(), express.json(), requestLogger);
 // not found
-app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/app', blogRouter);
+app.use('/api/v1/auth', authRouter); // jwt token
+app.use('/api/v1/app', jwtMiddleware, blogRouter); // secured jwt
 
 app.use(notFound, errorHandlerMiddleware);
 
