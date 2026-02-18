@@ -1,6 +1,6 @@
 import db from '#db';
 import { updateUserSchema } from '#validations/user.validaton';
-import { generateToken } from '#utils/hlper';
+import { deleteFile, generateToken } from '#utils/hlper';
 
 // profile pic upload
 
@@ -20,9 +20,13 @@ export const updateProfile = async (req) => {
 };
 
 export const updateUserPofilePic = async (req) => {
+    const fileNameWithPath = `./public/profile/${req.user.profile_pic}`;
+
+    deleteFile(fileNameWithPath);
+
     const userDetails = await db.users.update({
         data: {
-            profile_pic: '',
+            profile_pic: req.uniqueName,
         },
         where: {
             user_id: req.user.user_id,

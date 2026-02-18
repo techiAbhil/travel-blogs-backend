@@ -1,2 +1,2 @@
-import { registerSchema } from './auth.validation';
+import { registerSchema } from '#validations/auth.validation';
 export const updateUserSchema = registerSchema.partial();

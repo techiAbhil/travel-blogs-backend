@@ -7,14 +7,18 @@ import jwtMiddleware from '#middlewares/jwt.middleware';
 
 import authRouter from '#routes/auth.route';
 import blogRouter from '#routes/blog.route';
+import userRouter from '#routes/user.route';
 
 import cors from 'cors';
 
+const startingBaseURL = '/api/v1/';
 const app = express();
 app.use(cors(), express.json(), requestLogger);
+app.use(`${startingBaseURL}assets`, express.static('./public'));
 // not found
-app.use('/api/v1/auth', authRouter); // jwt token
-app.use('/api/v1/app', jwtMiddleware, blogRouter); // secured jwt
+app.use(`${startingBaseURL}auth`, authRouter); // jwt token
+app.use(`${startingBaseURL}app`, jwtMiddleware, blogRouter); // secured jwt
+app.use(`${startingBaseURL}app`, jwtMiddleware, userRouter); // secured jwt
 
 app.use(notFound, errorHandlerMiddleware);
 
