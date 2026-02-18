@@ -5,7 +5,7 @@ export const updateUserHandler = async (req, res) => {
     res.status(200).json({
         msg: 'User details has been updated',
         success: true,
-        refreshToken: response, // blog: response // use this to accomodate frontend
+        refreshToken: response,
     });
 };
 
@@ -14,6 +14,6 @@ export const updateUserProfilePicHandler = async (req, res) => {
     res.status(200).json({
         msg: 'Profile pic has been successfully uploaded',
         success: true,
-        refreshToken: response, // blog: response // use this to accomodate frontend
+        refreshToken: response,
     });
 };
