@@ -1,0 +1,513 @@
+{
+  "info": {
+    "_postman_id": "7048bc2f-8002-49e8-9072-20a8f2a0f4f7",
+    "name": "local",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "id": "dfdff373-58d4-44aa-bfeb-1168a522fb7a",
+      "name": "10 - delete blog",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/app/blog/{{blog_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog",
+            "{{blog_id}}"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "9f772be2-9f01-49b5-8a76-259ecdccd0a6",
+      "name": "1- Register user",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_name\": \"Meher\",\n  \"last_name\": \"Virat\",\n  \"password\": \"P@ssword\",\n  \"email\": \"Meher@gmail.com\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{URL}}/auth/register",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ],
+          "protocol": "https"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "713ab123-1560-4672-a55b-da7e9e9d37f4",
+      "name": "2 - Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"password\": \"P@ssw0rd\",\n  \"email\": \"Abhilash@gmail.com\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{URL}}/auth/login",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ],
+          "protocol": "https"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "3be25458-bb54-49cb-aad7-5d9c777c1e34",
+      "name": "3- Add blog",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"place_name\": \"Goa\",\n  \"review\": \"It was the greatest place ever\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{URL}}/app/blog",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "4c93d5f2-fba3-4756-a360-51233e27fd51",
+      "name": "4- blog pics/{blog_d}",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "pictures",
+              "disabled": false,
+              "type": "file",
+              "src": "C:\\Users\\vicky\\Desktop\\places photos\\goa.jpg",
+              "value": "goa.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{URL}}/app/blog/pictures/{{blog_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog",
+            "pictures",
+            "{{blog_id}}"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "c1a04c8d-8c06-4bd1-9799-cc08778f379f",
+      "name": "5 - get all blogs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/app/blog",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "abcd2da7-f6d2-4704-89e0-2b78f5fae7c5",
+      "name": "6- get my blogs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/app/blog?filterType=my",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog"
+          ],
+          "protocol": "https",
+          "query": [
+            {
+              "key": "filterType",
+              "value": "my",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "ef4c3b99-9eb5-4f40-8bab-84f548751e7a",
+      "name": "7- get blogs by sort order of place name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/app/blog",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "99b4648a-61f4-48da-b87a-3dd53d93fe6b",
+      "name": "8- get blogs by place search string",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/app/blog?searchTerm=ampi",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog"
+          ],
+          "protocol": "https",
+          "query": [
+            {
+              "key": "searchTerm",
+              "value": "ampi",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "3787a979-5d8a-403a-b972-d4256ddb6862",
+      "name": "9 - update blog",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"place_name\": \"Goa 111\",\n  \"review\": \"What a place... just wow!!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{URL}}/app/blog/{{blog_id}}",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "blog",
+            "{{blog_id}}"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "90fdae67-8abc-4cf6-8008-6828985c8e97",
+      "name": "Display my profile pic",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/assets/profile/1771337650682-badami.jpg",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "assets",
+            "profile",
+            "1771337650682-badami.jpg"
+          ],
+          "protocol": "https"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "61169ea6-90a5-49a0-96d7-584780b0eed2",
+      "name": "Display places photos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{URL}}/assets/images/1771338201349-Goa-Blog-Only.webp",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "assets",
+            "images",
+            "1771338201349-Goa-Blog-Only.webp"
+          ],
+          "protocol": "https"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "d4a308e0-fe4f-4d27-81fe-8a3715f5b1af",
+      "name": "profile pic",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "profile_pic",
+              "disabled": false,
+              "type": "file",
+              "src": "C:\\Users\\vicky\\Desktop\\places photos\\badami.jpg",
+              "value": "badami.jpg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{URL}}/app/user/upload",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "user",
+            "upload"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "156b481c-0816-4884-9736-07914113686c",
+      "name": "update profile",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_name\": \"Abhi\",\n  \"last_name\": \"Thakur\",\n  \"email\": \"abhilash@gmail.com\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{URL}}/app/user",
+          "host": [
+            "{{URL}}"
+          ],
+          "path": [
+            "app",
+            "user"
+          ],
+          "protocol": "https"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": []
+    }
+  ],
+  "variable": [
+    {
+      "id": "79ea45c7-2ab6-4879-a334-2c748dd933a9",
+      "key": "URL",
+      "value": "http://localhost:8082/api/v1",
+      "type": "default"
+    },
+    {
+      "id": "95ff9eef-95cb-43cc-b1c9-9419ca3fc3b3",
+      "key": "token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJmaXJzdF9uYW1lIjoiVmlja3kiLCJsYXN0X25hbWUiOiJWaXJhdCIsImVtYWlsIjoiYWJoaWxhc2hAZ21haWwuY29tIiwicHJvZmlsZV9waWMiOiIxNzcxMzM2MTY0ODk0LWJhZGFtaS5qcGciLCJpYXQiOjE3NzEzMzY2MjB9.MTnwmu1ovHXzHgRkewBEfGcT2mGfYs996w68DV_74SA",
+      "type": "default"
+    },
+    {
+      "id": "dadf6380-14f0-4a0c-8ca4-cbba34ecada2",
+      "key": "blog_id",
+      "value": "3",
+      "type": "default"
+    }
+  ]
+}
