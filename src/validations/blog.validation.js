@@ -11,3 +11,11 @@ export const addBlogSchema = z.object({
 // });
 
 export const updateBlogSchema = addBlogSchema.partial();
+
+export const allBlogsQUerySchema = z
+    .object({
+        filterType: z.enum(['all', 'my']),
+        searchTerm: z.string().trim(),
+        sortOrder: z.enum(['asc', 'desc']),
+    })
+    .partial();

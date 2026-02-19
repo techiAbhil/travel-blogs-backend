@@ -1,4 +1,8 @@
-import { addBlogSchema, updateBlogSchema } from '#validations/blog.validation';
+import {
+    addBlogSchema,
+    allBlogsQUerySchema,
+    updateBlogSchema,
+} from '#validations/blog.validation';
 import { numberSchema } from '#validations/common.validation';
 
 import db from '#db';
@@ -36,9 +40,21 @@ export const deleteBlog = async (req) => {
     });
     return blogDetails;
 };
+export const getAllBlog = async (req) => {
+    const { filterType, searchTerm, sortOrder } = allBlogsQUerySchema.parse(
+        req.query
+    );
+    const whereClause = {};
+    if (filterType === 'my') {
+        whereClause.user_id = req.user.user_id;
+    }
+    if (searchTerm) {
+        whereClause.place_name = searchTerm;
+    }
 
-export const getAllBlog = async () => {
-    // const queryString = req.query;
+    // const resposne = await db.$queryRaw`select * from \`travel-blog\` where user_id=${req.user.user_id}`;
+    // console.log('query response = ', resposne);
+
     const allBlogs = await db.travel_blog.findMany({
         include: {
             users: {
@@ -49,6 +65,10 @@ export const getAllBlog = async () => {
                     profile_pic: true,
                 },
             },
+        },
+        where: whereClause,
+        orderBy: {
+            place_name: sortOrder,
         },
     });
     // const table = `travel-blog`;

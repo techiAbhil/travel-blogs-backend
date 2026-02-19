@@ -7,6 +7,12 @@ const adapter = new PrismaMariaDb({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
 });
-const prisma = new PrismaClient({ adapter });
+const log = [];
+if (process.env.NODE_ENV === 'development') {
+    log.push('query');
+    log.push('error');
+}
+
+const prisma = new PrismaClient({ adapter, log });
 
 export default prisma;

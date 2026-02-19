@@ -35,10 +35,11 @@ export const deleteBlogHandler = async (req, res) => {
 };
 
 export const getAllBlogHandler = async (req, res) => {
-    const blogs = await getAllBlog();
+    const blogs = await getAllBlog(req);
     res.status(200).json({
         msg: 'Success',
         success: true,
+
         blogs,
     });
 };

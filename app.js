@@ -8,12 +8,13 @@ import jwtMiddleware from '#middlewares/jwt.middleware';
 import authRouter from '#routes/auth.route';
 import blogRouter from '#routes/blog.route';
 import userRouter from '#routes/user.route';
+import helmet from 'helmet';
 
 import cors from 'cors';
 
 const startingBaseURL = '/api/v1/';
 const app = express();
-app.use(cors(), express.json(), requestLogger);
+app.use(helmet(), cors(), express.json(), requestLogger);
 app.use(`${startingBaseURL}assets`, express.static('./public'));
 // not found
 app.use(`${startingBaseURL}auth`, authRouter); // jwt token
@@ -32,3 +33,12 @@ if (portNumber.error) {
 app.listen(PORT, () => {
     console.log(`Server started at http://localhost:${portNumber.data}`);
 });
+
+/*
+
+TODO: 
+1- query string implementation in get all blogs
+2- prisma related error handling
+3- raw queries 
+4- helmet, rate limiter, readme.md
+*/
