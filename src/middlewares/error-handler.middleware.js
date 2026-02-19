@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import fs from 'fs';
-import { Prisma } from '../../generated/prisma/client';
+import { Prisma } from '../../generated/prisma/client.ts';
 
 const stringifyError = (err) => {
     if (typeof err === 'object') {
@@ -22,19 +22,22 @@ export default (err, req, res, next) => {
     });
 
     if (err instanceof z.ZodError) {
-        return res.status(400).json({
-            success: false,
-            msg: 'Invalid request object',
-            error: z.prettifyError(err),
-        });
+        err.status = 400;
+        err.msg = 'Bad Rquest';
+        err.error = z.prettifyError(err);
     } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        // The .code property can be accessed in a type-safe manner
-        res.status(500).json({
-            success: false,
-            msg: 'Database issue',
-            error: err,
-        });
+        err.status = 500;
+        err.msg = 'Database Error!';
+        err.error = err.message;
+    } else if (err instanceof Prisma.PrismaClientUnknownRequestError) {
+        err.status = 500;
+        err.msg = 'Database Error!';
+        err.error = 'Unknow database error';
+    } else if (err instanceof Prisma.PrismaClientValidationError) {
+        err.status = 500;
+        err.msg = 'Database Error!';
+        err.error = 'Database validation error';
     }
 
-    res.status(500).json({ success: false, msg: 'Something went wrong!' });
+    res.status(err.status).json(err);
 };
