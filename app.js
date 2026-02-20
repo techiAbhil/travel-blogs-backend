@@ -14,7 +14,16 @@ import cors from 'cors';
 
 const startingBaseURL = '/api/v1/';
 const app = express();
-app.use(helmet(), cors(), express.json(), requestLogger);
+app.use(
+    cors(),
+    helmet({
+        crossOriginEmbedderPolicy: false,
+        crossOriginResourcePolicy: { policy: 'cross-origin' },
+        contentSecurityPolicy: false, // Only if whitelisting (Step 3) doesn't work
+    }),
+    express.json(),
+    requestLogger
+);
 app.use(`${startingBaseURL}assets`, express.static('./public'));
 // not found
 app.use(`${startingBaseURL}auth`, authRouter); // jwt token
