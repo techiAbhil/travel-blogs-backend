@@ -81,4 +81,4 @@ Create these before running the app (future you will thank you):
 
 ![image](./folder-structure.png)
 
-If you followed through all above guidelines you should be good to go, it it still did not work on you machine all I can say is `trust me it works on my machine!`
+If you followed through all above guidelines you should be good to go, if it still did not work on you machine all I can say is `trust me it works on my machine!`
