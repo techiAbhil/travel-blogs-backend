@@ -1,26 +1,84 @@
-# Travel Blog Backend
+# ✈️ Travel Blog Backend (Express.js)
 
-Its an travel blog posting app. Its an testing purpose app
+A simple **travel blogging backend** built with **Express.js**.
+Users can register, log in, write travel blogs, edit/delete them, and update profiles with photo uploads.
+Perfect if you’re exploring Express.js—or pretending you travel more than you actually do 😄
 
-## Node module installation
+---
 
-Install node libraries (Note: this is only needed first time)
-`npm install`
+## 🚀 Getting Started
 
-## Start up app in dev mode
+### Install Dependencies (one-time ritual)
 
-`npm run dev`
+```bash
+npm install
+```
 
-### Start up app in production mode
+### Run in Development
 
-`npm run start`
+```bash
+npm run dev
+```
 
-### Database setup (MySQL)
+### Run in Production
 
-You will need to create an database with the name as `travel-diaries-2026` and first you will have to create database schema.
-To create database schema go to `prisma/migrations` directory and copy and paste the `sql`.
-After the database has been setup run `npm run db:sync` in terminal so that it will generate required prisma files in `generated/prisma` directory.
+```bash
+npm run start
+```
 
-### Extra info about project
+---
 
-Apart from this there are multiple commands, just go through package.json `scripts` object. Needless to say they did not need any special explanation. There is another `frontend` app design to connect this api's you can clone it from `[Frontend app](https://github.com/techiAbhil/travel-blogs-frontend)`. If you dont wish to use the frontend app there are `Postman.json`(if using postman) and `RQ.json`(if using requestly) collection files already created in root directory - simply use them.
+## 🗄️ Database Setup (MySQL)
+
+1. Create a database named:
+
+    ```
+    travel-diaries-2026
+    ```
+
+2. Run the SQL scripts from:
+
+    ```
+    prisma/migrations/migration.sql
+    ```
+
+3. Sync Prisma:
+
+    ```bash
+    npm run db:sync
+    ```
+
+This will generate Prisma files inside `generated/prisma`.
+
+---
+
+## 🧩 Extra Goodies
+
+- More commands live inside `package.json → scripts` (they’re self-explanatory, promise).
+- Frontend available here 👉 [Travel Blogs Frontend](https://github.com/techiAbhil/travel-blogs-frontend)
+- Dont want frontend? No worries.
+    - `Postman.json` (Postman users)
+    - `RQ.json` (Requestly users)
+      Both the collections are ready to use from the root directory.
+
+---
+
+## 📁 Required Folders
+
+Create these before running the app (future you will thank you):
+
+```
+/public
+  ├── images
+  └── profile
+/logs
+```
+
+- The app will auto-create `logs/error-log.txt`
+- Errors go there so your terminal can stay calm 😌
+
+### Final folder structure
+
+![image](./folder-structure.png)
+
+If you followed through all above guidelines you should be good to go, it it still did not work on you machine all I can say is `trust me it works on my machine!`
