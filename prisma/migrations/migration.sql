@@ -5,6 +5,7 @@ CREATE TABLE `travel-blog` (
     `review` VARCHAR(500) NOT NULL,
     `user_id` INTEGER NOT NULL,
     `pictures` VARCHAR(500) NOT NULL,
+    `cost` INTEGER NULL,
 
     INDEX `user_id_idx`(`user_id`),
     PRIMARY KEY (`blog_id`)
@@ -21,6 +22,24 @@ CREATE TABLE `users` (
 
     UNIQUE INDEX `email_UNIQUE`(`email`),
     PRIMARY KEY (`user_id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `booking` (
+    `booking_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `order_id` VARCHAR(45) NULL,
+    `amount` DOUBLE NOT NULL,
+    `currency` VARCHAR(45) NULL,
+    `receipt` VARCHAR(45) NULL,
+    `status` ENUM('created', 'attempted', 'paid') NULL,
+    `razorpay_payment_id` VARCHAR(100) NULL,
+    `razorpay_signature` VARCHAR(200) NULL,
+    `details` VARCHAR(100) NULL,
+    `blog_id` INTEGER NULL,
+    `user_id` INTEGER NULL,
+
+    UNIQUE INDEX `order_id_UNIQUE`(`order_id`),
+    PRIMARY KEY (`booking_id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey

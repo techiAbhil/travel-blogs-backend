@@ -13,6 +13,7 @@ model travel_blog {
   review     String @db.VarChar(500)
   user_id    Int
   pictures   String @db.VarChar(500)
+  cost       Int?
   users      users  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "user_id")
 
   @@index([user_id], map: "user_id_idx")
@@ -27,4 +28,24 @@ model users {
   password    String        @db.VarChar(200)
   profile_pic String?       @db.VarChar(200)
   travel_blog travel_blog[]
+}
+
+model booking {
+  booking_id          Int             @id @default(autoincrement())
+  order_id            String?         @unique(map: "order_id_UNIQUE") @db.VarChar(45)
+  amount              Float
+  currency            String?         @db.VarChar(45)
+  receipt             String?         @db.VarChar(45)
+  status              booking_status?
+  razorpay_payment_id String?         @db.VarChar(100)
+  razorpay_signature  String?         @db.VarChar(200)
+  details             String?         @db.VarChar(100)
+  blog_id             Int?
+  user_id             Int?
+}
+
+enum booking_status {
+  created
+  attempted
+  paid
 }

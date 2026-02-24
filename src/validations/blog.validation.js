@@ -3,6 +3,7 @@ import z from 'zod';
 export const addBlogSchema = z.object({
     place_name: z.string().trim().min(3).max(45),
     review: z.string().trim().min(3).max(45),
+    cost: z.coerce.number(),
 });
 
 // export const updateBlogSchema = z.object({
