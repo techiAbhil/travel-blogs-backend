@@ -1,6 +1,7 @@
 import { updateProfile, updateUserPofilePic } from '#services/user.service';
+import type { Request, Response } from 'express';
 
-export const updateUserHandler = async (req, res) => {
+export const updateUserHandler = async (req: Request, res: Response) => {
     const response = await updateProfile(req);
     res.status(200).json({
         msg: 'User details has been updated',
@@ -9,7 +10,10 @@ export const updateUserHandler = async (req, res) => {
     });
 };
 
-export const updateUserProfilePicHandler = async (req, res) => {
+export const updateUserProfilePicHandler = async (
+    req: Request,
+    res: Response
+) => {
     const response = await updateUserPofilePic(req);
     res.status(200).json({
         msg: 'Profile pic has been successfully uploaded',

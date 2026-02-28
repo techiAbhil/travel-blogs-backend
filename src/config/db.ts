@@ -1,5 +1,5 @@
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
-import { PrismaClient } from '../../generated/prisma/client.ts';
+import { PrismaClient } from 'generated/prisma/client';
 
 const adapter = new PrismaMariaDb({
     host: process.env.DATABASE_HOST,
@@ -7,12 +7,9 @@ const adapter = new PrismaMariaDb({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
 });
-const log = [];
-if (process.env.NODE_ENV === 'development') {
-    log.push('query');
-    log.push('error');
-}
-
-const prisma = new PrismaClient({ adapter, log });
+const prisma = new PrismaClient({
+    adapter,
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error'] : [],
+});
 
 export default prisma;

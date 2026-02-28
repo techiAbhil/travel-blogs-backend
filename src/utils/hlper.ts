@@ -7,7 +7,7 @@ export const generateToken = (userDetails) => {
     return token;
 };
 
-export const deleteFile = (fileNameWithPath) => {
+export const deleteFile = (fileNameWithPath: string) => {
     if (fileNameWithPath && fs.existsSync(fileNameWithPath)) {
         fs.unlink(fileNameWithPath, (error) => {
             if (error) {

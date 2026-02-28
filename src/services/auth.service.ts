@@ -2,6 +2,7 @@ import { loginSchema, registerSchema } from '#validations/auth.validation';
 import bcrypt from 'bcryptjs';
 import db from '#db';
 import { generateToken } from '#utils/hlper';
+import type { Request, Response, NextFunction } from 'express';
 
 export const login = async (req) => {
     const payload = loginSchema.parse(req.body);
