@@ -1,0 +1,32 @@
+{
+    "root": [
+        "../app.ts",
+        "../src/config/db.ts",
+        "../src/controllers/auth.controller.ts",
+        "../src/controllers/blog.controller.ts",
+        "../src/controllers/booking.controller.ts",
+        "../src/controllers/user.controller.ts",
+        "../src/middlewares/error-handler.middleware.ts",
+        "../src/middlewares/file-upload.middleware.ts",
+        "../src/middlewares/jwt.middleware.ts",
+        "../src/middlewares/notfound.middleware.ts",
+        "../src/middlewares/request-logger.middleware.ts",
+        "../src/models/travel_blog.models.ts",
+        "../src/models/user.models.ts",
+        "../src/routes/auth.route.ts",
+        "../src/routes/blog.route.ts",
+        "../src/routes/booking.route.ts",
+        "../src/routes/user.route.ts",
+        "../src/services/auth.service.ts",
+        "../src/services/blog.service.ts",
+        "../src/services/booking.service.ts",
+        "../src/services/user.service.ts",
+        "../src/utils/hlper.ts",
+        "../src/validations/auth.validation.ts",
+        "../src/validations/blog.validation.ts",
+        "../src/validations/common.validation.ts",
+        "../src/validations/user.validaton.ts",
+        "../index.d.ts"
+    ],
+    "version": "5.9.3"
+}

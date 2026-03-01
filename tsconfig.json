@@ -2,30 +2,34 @@
     // Visit https://aka.ms/tsconfig to read more about this file
     "compilerOptions": {
         // File Layout
-        "baseUrl": "./",
-        "rootDir": ".",
+        "rootDir": "./",
         "outDir": "./dist",
-        "module": "esnext",
+        "module": "es2020",
+        "target": "ES2020",
         "moduleResolution": "node",
-        "target": "es2023",
-        "types": ["node"],
         "noUnusedLocals": true,
         "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
         "esModuleInterop": true,
         "verbatimModuleSyntax": true,
-        // "isolatedModules": true,
-        // "noUncheckedSideEffectImports": true,
-        // "moduleDetection": "force",
-        "skipLibCheck": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "skipLibCheck": true /* Skip type checking all .d.ts files. */,
         "paths": {
-            "#controllers/*": ["src/controllers/*.ts"],
-            "#middlewares/*": ["src/middlewares/*.ts"],
-            "#routes/*": ["src/routes/*.ts"],
-            "#services/*": ["src/services/*.ts"],
-            "#validations/*": ["src/validations/*.ts"],
-            "#db": ["src/config/db.ts"],
-            "#utils/*": ["src/utils/*.ts"]
+            "#controllers/*": ["./src/controllers/*"],
+            "#middlewares/*": ["./src/middlewares/*"],
+            "#routes/*": ["./src/routes/*"],
+            "#services/*": ["./src/services/*"],
+            "#validations/*": ["./src/validations/*"],
+            "#db": ["./src/config/db.ts"],
+            "#utils/*": ["./src/utils/*"],
+            "#generated/*": ["./generated/*"]
         }
+    },
+    "ts-node": {
+        "esm": true
     },
     "include": ["app.ts", "src/**/*", "index.d.ts"],
     "exclude": ["node_modules"]
