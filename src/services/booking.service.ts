@@ -1,17 +1,17 @@
 import { numberSchema } from '#validations/common.validation';
 import db from '#db';
 import Razorpay from 'razorpay';
-import {
-    validatePaymentVerification,
-    validateWebhookSignature,
-} from 'razorpay/dist/utils/razorpay-utils.js';
+import { validateWebhookSignature } from 'razorpay/dist/utils/razorpay-utils.js';
+import type { Request } from 'express';
 
 const razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_SECRET_KEY,
 });
 
-export const bookingPayment = async (req) => {
+export const bookingPayment = async (
+    req: Request<{}, {}, { blog_id: number }>
+) => {
     // blog_id
     const blog_id = numberSchema.parse(req.body.blog_id);
 
@@ -21,7 +21,7 @@ export const bookingPayment = async (req) => {
         },
     });
 
-    if (blogDetails.cost) {
+    if (blogDetails && blogDetails.cost) {
         //create order
 
         const options = {
@@ -37,8 +37,8 @@ export const bookingPayment = async (req) => {
         const bookingDetails = await db.booking.create({
             data: {
                 blog_id,
-                user_id: req.user.user_id,
-                amount: rzpData.amount,
+                user_id: req.user?.user_id || -1,
+                amount: Number(rzpData.amount),
                 currency: rzpData.currency,
                 order_id: rzpData.id,
                 status: rzpData.status,
@@ -50,7 +50,7 @@ export const bookingPayment = async (req) => {
     throw new Error('Something went wrong while creating order;');
 };
 
-export const verifyPayment = async (req) => {
+export const verifyPayment = async (req: Request) => {
     // verify payment
     // booking table update & also update the status to be `paid`
 
@@ -63,7 +63,11 @@ export const verifyPayment = async (req) => {
     //     razorpay_signature,
     //     process.env.RAZORPAY_SECRET_KEY
     // );
-
+    if (!process.env.RAZORPAY_SECRET_KEY) {
+        throw new Error(
+            'RAZORPAY_SECRET_KEY environment variable is not defined'
+        );
+    }
     // WAY - 2 of verification
     const isValidPayment = validateWebhookSignature(
         `${razorpay_order_id}|${razorpay_payment_id}`,

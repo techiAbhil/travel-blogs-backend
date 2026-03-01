@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import type { Request, Response, NextFunction } from 'express';
-import { usersModel } from 'generated/prisma/models';
+import { type usersModel } from 'generated/prisma/models';
 
 export default (req: Request, res: Response, next: NextFunction) => {
     const authoriztion = req.headers.authorization;

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
-import { usersModel } from 'generated/prisma/models';
+import { type usersModel } from 'generated/prisma/models';
 
 export const generateToken = (userDetails: usersModel) => {
     const { password, ...userDetailsWithoutPassword } = userDetails;

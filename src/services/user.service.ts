@@ -1,7 +1,7 @@
 import db from '#db';
 import { updateUserSchema } from '#validations/user.validaton';
 import { deleteFile, generateToken } from '#utils/hlper';
-import { Request } from 'express';
+import { type Request } from 'express';
 
 // profile pic upload
 

@@ -5,26 +5,14 @@
         "baseUrl": "./",
         "rootDir": ".",
         "outDir": "./dist",
-
-        // Environment Settings
         "module": "esnext",
         "moduleResolution": "node",
         "target": "es2023",
-        // For nodejs:
-        // "lib": ["esnext"],
         "types": ["node"],
-
-        // Style Options
-        // "noImplicitReturns": true,
-        // "noImplicitOverride": true,
         "noUnusedLocals": true,
-        // "noUnusedParameters": true,
-        // "noFallthroughCasesInSwitch": true,
-
-        // Recommended Options
         "strict": true,
         "esModuleInterop": true,
-        // "verbatimModuleSyntax": true,
+        "verbatimModuleSyntax": true,
         // "isolatedModules": true,
         // "noUncheckedSideEffectImports": true,
         // "moduleDetection": "force",

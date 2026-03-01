@@ -1,9 +1,8 @@
 import { numberSchema } from '#validations/common.validation';
-import { Request } from 'express';
 import multer from 'multer';
 
 const myStorage = multer.diskStorage({
-    destination: (req: Request, file, cb) => {
+    destination: (req, file, cb) => {
         let destinationFolder = './public/profile'; // Default: profile pic directory
         if (file.fieldname === 'pictures') {
             // for blog images
@@ -16,7 +15,7 @@ const myStorage = multer.diskStorage({
         }
         cb(null, destinationFolder);
     },
-    filename: (req: Request, file, cb) => {
+    filename: (req, file, cb) => {
         const uniqueName = `${Date.now()}-${file.originalname}`;
         if (req.uniqueName) {
             // multiple file names join with , seprated

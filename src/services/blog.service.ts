@@ -7,8 +7,8 @@ import { numberSchema } from '#validations/common.validation';
 
 import db from '#db';
 import { deleteFile } from '#utils/hlper';
-import { Request } from 'express';
-import { travel_blogWhereInput } from 'generated/prisma/models';
+import { type Request } from 'express';
+import { type travel_blogWhereInput } from 'generated/prisma/models';
 
 export const addBlog = async (req: Request) => {
     const payload = addBlogSchema.parse(req.body);
