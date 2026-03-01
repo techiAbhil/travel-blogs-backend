@@ -12,7 +12,6 @@ import bookingRouter from '#routes/booking.route.js';
 import helmet from 'helmet';
 
 import cors from 'cors';
-import 'dotenv/config';
 
 const startingBaseURL = '/api/v1/';
 const app = express();

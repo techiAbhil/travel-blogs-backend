@@ -6,10 +6,20 @@
     "author": "Geneka",
     "type": "module",
     "main": "dist/app.js",
+    "imports": {
+        "#middlewares/*": "./src/middlewares/*",
+        "#routes/*": "./src/routes/*",
+        "#validations/*": "./src/validations/*",
+        "#services/*": "./src/services/*",
+        "#controllers/*": "./src/controllers/*",
+        "#db": "./src/config/db",
+        "#utils/*": "./src/utils/*",
+        "#generated/*": "./generated/*"
+    },
     "scripts": {
         "build": "tsc && tsc-alias",
         "start": "node --env-file=.env dist/app.js",
-        "dev": "nodemon --watch src --watch app.ts --ext ts --exec \"node --loader ts-node/esm\" app.ts",
+        "dev": "tsx watch --env-file=.env app.ts",
         "db:sync": "prisma db pull && prisma generate",
         "sql": "prisma migrate diff  --from-empty  --to-schema prisma/schema.prisma --script > prisma/migrations/migration.sql"
     },
@@ -36,8 +46,8 @@
         "nodemon": "^3.1.14",
         "prettier": "^3.8.1",
         "prisma": "^7.3.0",
-        "ts-node": "^10.9.2",
         "tsc-alias": "^1.8.16",
+        "tsx": "^4.21.0",
         "typescript": "^5.9.3"
     }
 }
