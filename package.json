@@ -7,8 +7,8 @@
     "type": "module",
     "main": "dist/app.js",
     "scripts": {
-        "build": "tsc",
-        "start": "node dist/app.js",
+        "build": "tsc && tsc-alias",
+        "start": "node --env-file=.env dist/app.js",
         "dev": "nodemon --watch src --watch app.ts --ext ts --exec \"node --loader ts-node/esm\" app.ts",
         "db:sync": "prisma db pull && prisma generate",
         "sql": "prisma migrate diff  --from-empty  --to-schema prisma/schema.prisma --script > prisma/migrations/migration.sql"
@@ -37,6 +37,7 @@
         "prettier": "^3.8.1",
         "prisma": "^7.3.0",
         "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.16",
         "typescript": "^5.9.3"
     }
 }

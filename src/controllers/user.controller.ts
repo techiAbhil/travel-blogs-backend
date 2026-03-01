@@ -1,4 +1,4 @@
-import { updateProfile, updateUserPofilePic } from '#services/user.service';
+import { updateProfile, updateUserPofilePic } from '#services/user.service.js';
 import type { Request, Response } from 'express';
 
 export const updateUserHandler = async (req: Request, res: Response) => {

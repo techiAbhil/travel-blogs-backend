@@ -1,4 +1,4 @@
-import { login, register } from '#services/auth.service';
+import { login, register } from '#services/auth.service.js';
 import type { Request, Response } from 'express';
 
 export const loginHandler = async (req: Request, res: Response) => {

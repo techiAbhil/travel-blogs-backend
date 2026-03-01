@@ -2,13 +2,13 @@ import {
     addBlogSchema,
     allBlogsQUerySchema,
     updateBlogSchema,
-} from '#validations/blog.validation';
-import { numberSchema } from '#validations/common.validation';
+} from '#validations/blog.validation.js';
+import { numberSchema } from '#validations/common.validation.js';
 
 import db from '#db';
-import { deleteFile } from '#utils/hlper';
+import { deleteFile } from '#utils/hlper.js';
 import { type Request } from 'express';
-import { type travel_blogWhereInput } from '#generated/prisma/models';
+import { type travel_blogWhereInput } from '#generated/prisma/models.js';
 
 export const addBlog = async (req: Request) => {
     const payload = addBlogSchema.parse(req.body);

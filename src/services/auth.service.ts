@@ -1,7 +1,7 @@
-import { loginSchema, registerSchema } from '#validations/auth.validation';
+import { loginSchema, registerSchema } from '#validations/auth.validation.js';
 import bcrypt from 'bcryptjs';
 import db from '#db';
-import { generateToken } from '#utils/hlper';
+import { generateToken } from '#utils/hlper.js';
 import type { Request } from 'express';
 
 export const login = async (req: Request) => {

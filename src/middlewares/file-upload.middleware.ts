@@ -1,4 +1,4 @@
-import { numberSchema } from '#validations/common.validation';
+import { numberSchema } from '#validations/common.validation.js';
 import multer from 'multer';
 
 const myStorage = multer.diskStorage({

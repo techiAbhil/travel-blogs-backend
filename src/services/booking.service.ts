@@ -1,4 +1,4 @@
-import { numberSchema } from '#validations/common.validation';
+import { numberSchema } from '#validations/common.validation.js';
 import db from '#db';
 import Razorpay from 'razorpay';
 import { validateWebhookSignature } from 'razorpay/dist/utils/razorpay-utils.js';

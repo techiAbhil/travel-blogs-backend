@@ -1,14 +1,14 @@
 import express from 'express';
-import notFound from '#middlewares/notFound.middleware';
-import requestLogger from '#middlewares/request-logger.middleware';
-import { numberSchema } from '#validations/common.validation';
-import errorHandlerMiddleware from '#middlewares/error-handler.middleware';
-import jwtMiddleware from '#middlewares/jwt.middleware';
+import notFound from '#middlewares/notFound.middleware.js';
+import requestLogger from '#middlewares/request-logger.middleware.js';
+import { numberSchema } from '#validations/common.validation.js';
+import errorHandlerMiddleware from '#middlewares/error-handler.middleware.js';
+import jwtMiddleware from '#middlewares/jwt.middleware.js';
 
-import authRouter from '#routes/auth.route';
-import blogRouter from '#routes/blog.route';
-import userRouter from '#routes/user.route';
-import bookingRouter from '#routes/booking.route';
+import authRouter from '#routes/auth.route.js';
+import blogRouter from '#routes/blog.route.js';
+import userRouter from '#routes/user.route.js';
+import bookingRouter from '#routes/booking.route.js';
 import helmet from 'helmet';
 
 import cors from 'cors';

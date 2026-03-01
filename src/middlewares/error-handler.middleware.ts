@@ -1,7 +1,7 @@
 import * as z from 'zod';
 import fs from 'fs';
 import type { Request, Response, NextFunction } from 'express';
-import { Prisma } from '#generated/prisma/client';
+import { Prisma } from '#generated/prisma/client.js';
 
 const stringifyError = (err: Error) => {
     if (typeof err === 'object') {

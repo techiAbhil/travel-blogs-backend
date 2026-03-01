@@ -5,8 +5,8 @@ import {
     getMyBlogsHandler,
     updateBlogHandler,
     uploadBlogPicturesHandler,
-} from '#controllers/blog.controller';
-import multerInstance from '#middlewares/file-upload.middleware';
+} from '#controllers/blog.controller.js';
+import multerInstance from '#middlewares/file-upload.middleware.js';
 import express from 'express';
 
 const router = express.Router();

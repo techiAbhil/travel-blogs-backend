@@ -1,4 +1,4 @@
-import { bookingPayment, verifyPayment } from '#services/booking.service';
+import { bookingPayment, verifyPayment } from '#services/booking.service.js';
 import type { Request, Response } from 'express';
 
 export const bookingPaymentHandler = async (req: Request, res: Response) => {

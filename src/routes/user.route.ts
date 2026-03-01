@@ -1,8 +1,8 @@
 import {
     updateUserHandler,
     updateUserProfilePicHandler,
-} from '#controllers/user.controller';
-import multerInstance from '#middlewares/file-upload.middleware';
+} from '#controllers/user.controller.js';
+import multerInstance from '#middlewares/file-upload.middleware.js';
 import express from 'express';
 
 const router = express.Router();

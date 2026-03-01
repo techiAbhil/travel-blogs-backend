@@ -5,7 +5,7 @@ import {
     updateBlog,
     deleteBlog,
     updateBlogPictrues,
-} from '#services/blog.service';
+} from '#services/blog.service.js';
 import type { Request, Response } from 'express';
 
 export const addBlogHandler = async (req: Request, res: Response) => {
