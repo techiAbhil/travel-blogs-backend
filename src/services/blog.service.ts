@@ -7,46 +7,48 @@ import { numberSchema } from '#validations/common.validation';
 
 import db from '#db';
 import { deleteFile } from '#utils/hlper';
+import { Request } from 'express';
+import { travel_blogWhereInput } from 'generated/prisma/models';
 
-export const addBlog = async (req) => {
+export const addBlog = async (req: Request) => {
     const payload = addBlogSchema.parse(req.body);
     const blogDetails = await db.travel_blog.create({
-        data: { ...payload, pictures: '', user_id: req.user.user_id },
+        data: { ...payload, pictures: '', user_id: req?.user?.user_id || -1 },
     });
     return blogDetails;
 };
 
-export const updateBlog = async (req) => {
+export const updateBlog = async (req: Request) => {
     const blog_id = numberSchema.parse(req.params.blog_id);
     const payload = updateBlogSchema.parse(req.body);
     const blogDetails = await db.travel_blog.update({
         data: payload,
         where: {
             blog_id, // blog_id: blog_id
-            user_id: req.user.user_id,
+            user_id: req.user?.user_id,
         },
     });
     return blogDetails;
 };
 
-export const deleteBlog = async (req) => {
+export const deleteBlog = async (req: Request) => {
     const blog_id = numberSchema.parse(req.params.blog_id);
 
     const blogDetails = await db.travel_blog.delete({
         where: {
             blog_id, // blog_id: blog_id
-            user_id: req.user.user_id,
+            user_id: req.user?.user_id || -1,
         },
     });
     return blogDetails;
 };
-export const getAllBlog = async (req) => {
+export const getAllBlog = async (req: Request) => {
     const { filterType, searchTerm, sortOrder } = allBlogsQUerySchema.parse(
         req.query
     );
-    const whereClause = {};
+    const whereClause: travel_blogWhereInput = {};
     if (filterType === 'my') {
-        whereClause.user_id = req.user.user_id;
+        whereClause.user_id = req.user?.user_id || -1;
     }
     if (searchTerm) {
         whereClause.place_name = searchTerm;
@@ -76,24 +78,24 @@ export const getAllBlog = async (req) => {
     return allBlogs;
 };
 
-export const getBlogByUser = async (req) => {
+export const getBlogByUser = async (req: Request) => {
     const user = req.user;
     const myBlogs = await db.travel_blog.findMany({
         where: {
-            user_id: user.user_id,
+            user_id: user?.user_id || -1,
         },
     });
     return myBlogs;
 };
 
-export const updateBlogPictrues = async (req) => {
+export const updateBlogPictrues = async (req: Request) => {
     const previousBlogDetails = await db.travel_blog.findFirst({
         where: {
             blog_id: req.blog_id,
         },
     });
 
-    if (previousBlogDetails.pictures) {
+    if (previousBlogDetails?.pictures) {
         previousBlogDetails.pictures
             .split(', ')
             .forEach((pic) => deleteFile(`./public/images/${pic}`));
@@ -105,7 +107,7 @@ export const updateBlogPictrues = async (req) => {
         },
         where: {
             blog_id: req.blog_id, // blog_id: blog_id
-            user_id: req.user.user_id,
+            user_id: req.user?.user_id,
         },
     });
     return blogDetails;

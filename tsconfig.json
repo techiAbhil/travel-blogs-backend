@@ -39,6 +39,6 @@
             "#utils/*": ["src/utils/*.ts"]
         }
     },
-    "include": ["app.ts", "src/**/*"],
+    "include": ["app.ts", "src/**/*", "index.d.ts"],
     "exclude": ["node_modules"]
 }

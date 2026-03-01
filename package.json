@@ -8,12 +8,12 @@
     "main": "app.js",
     "scripts": {
         "build": "tsc",
-        "start": "tsx --env-file=.env.production app.ts",
-        "dev": "tsx --env-file=.env --watch app.ts",
+        "start": "tsc app.ts",
+        "dev": "tsc --watch app.ts",
         "lint": "eslint",
         "lint:fix": "eslint --fix",
-        "db:sync": "npx prisma db pull & npx prisma generate",
-        "sql": "npx prisma migrate diff  --from-empty  --to-schema prisma/schema.prisma --script > prisma/migrations/migration.sql"
+        "db:sync": "prisma db pull & prisma generate",
+        "sql": "prisma migrate diff  --from-empty  --to-schema prisma/schema.prisma --script > prisma/migrations/migration.sql"
     },
     "dependencies": {
         "@prisma/adapter-mariadb": "^7.3.0",
@@ -30,7 +30,10 @@
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
+        "@types/cors": "^2.8.19",
         "@types/express": "^5.0.6",
+        "@types/jsonwebtoken": "^9.0.10",
+        "@types/multer": "^2.0.0",
         "@types/node": "^25.3.2",
         "eslint": "^10.0.0",
         "globals": "^17.3.0",

@@ -9,7 +9,7 @@ const myStorage = multer.diskStorage({
             // for blog images
             const result = numberSchema.safeParse(req.params.blog_id);
             if (result.error) {
-                return cb('something went wrong with blog id!', null);
+                return cb(new Error('something went wrong with blog id!'), '');
             }
             req.blog_id = result.data;
             destinationFolder = './public/images';
